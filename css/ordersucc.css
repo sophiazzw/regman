@@ -1,0 +1,10 @@
+/* CSS Document */
+#ordersucc{width:100%;height:auto;margin-top:50px;}
+#pro{width:100%;height:auto;height:40px;background-color:#0099FF;font-size:20px;font-weight:bold;letter-spacing:3px;line-height:40px;color:white;text-align:left;}
+#pro img{float:right;width:60%;}
+
+#succ{width:100%;background-color:white;clear:both;border-top:2px solid #0099FF;text-align:left;height:100px;}
+
+#succ p img{padding-top:5px;}
+#succ p{line-height:33px;font-size:14px;padding-left:20px;font-weight:800}
+#succ p a{color:#0099FF; font-weight:bold;font-size:13px;}

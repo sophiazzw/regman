@@ -1,0 +1,566 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  	<link rel="stylesheet" href="css/loginRe.css" media="all">
+	<link href="css/lunbo.css" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery_cart.js"></script>
+	<script type="text/javascript" src="js/lanrenzhijia.js"></script>
+	
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+ <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <style>
+*{ margin:0; padding:0; list-style:none; text-decoration:none;list-style-type:none;}
+/* 代码整理：懒人之家 www.lanrenzhijia.com */
+/* 正文
+/*#container{width:1400px; height:1000px; background-color:#CCCCCC;margin-left:250pxpx} */
+body{background-color:#efefef;}
+#header{ width:100%; background-color:#1d2087;height:50px;color:#FFFFFF;text-align:right;}
+#contain{width:1000px;height:50px;text-align:center;background-color:#1d2087}
+#log{float:left;text-align:left;height:auto;}
+a{color:#FFFFFF;}
+.moreserver a{color:black;line-height:50px;}
+#nav{float:left;height:auto;}
+#nav li {float:left;line-height:50px;width:25%;height:50px;text-align:center;font-weight:bold;font-size:16px;}
+#tel{float:right;height:50px;width:auto;}
+#tel ul li {float:left;line-height:50px;font-weight:bold;text-align:right;width:auto;}
+#nav ul li:hover{ box-shadow:orange 0 1px 1px 0; }
+.number{text-align:right;font-size:16px;}
+.number1{text-align:right;font-size:16px;float:right;}
+.pub{font-size:16px;text-align:right;float:right;}
+.c2{width:9%;}
+.c5{width:50.5%;}
+.c3{width:40.5%;}
+#body{width:100%;height:auto;}
+#bodyer{width:1000px;height:auto;}
+#lunbo{width:100%;padding-top:30px;height:auto;text-align:center;}
+#foot{width:100%;height:100px;background-color:#1d2087;text-align:left;}
+#he{width:100%;background-color:white;height:100px;margin-top:10px;line-height:45px;}
+#fri{width:1000px;height:80px;text-align:left;}
+#fri a{color:#666;font-size:12px;font-weight:400;}
+#footer{width:1000px;height:80px;text-align:left;padding-top:20px;font-size:15px;}
+#footer td{font-size:15px;font-weight:300;color:white;height:40px;}
+</style>
+  </script>
+  <script type="text/javascript">
+  		$(function(){
+			
+			$("#nav ul li").hover(
+				function () {
+					 $(this).css({"background-color":"#0099FF","font-size":"18px"});
+					
+				 },
+				function () {
+				 $(this).css({"background-color":"#1d2087","font-size":"16px"});
+				 }
+			 );
+			 $(".theme-login[name='log']").click(function(){
+				$('.theme-popover-mask').fadeIn(100);
+				$('.theme-popover').slideDown(200);
+			});
+			$('.theme-poptit .close').click(function(){
+				$('.theme-popover-mask').fadeOut(100);
+				$('.theme-popover').slideUp(200);
+			});
+			
+			
+			 $(".theme-login[name='reg']").click(function(){
+				$('.theme-popover-maskaa').fadeIn(100);
+				$('.theme-popoveraa').slideDown(200);
+				
+			});
+			$('.theme-poptitaa .close').click(function(){
+				$('.theme-popover-maskaa').fadeOut(100);
+				$('.theme-popoveraa').slideUp(200);
+			});
+			
+			
+			
+			<!--轮播图片start-->
+			$(".btnlun").show();
+			$(".btnlun  a:first").addClass("active");	
+			$().gallery({
+				current: [".show_images_1",".show_images_1_img"],
+				left: [".show_images_2",".show_images_2_img"],
+				right: [".show_images_3",".show_images_3_img"],
+				none: [".show_images_4",".show_images_4_img"],
+				duration: 500,
+				start: function() {
+					$(".header_text").fadeOut(150);
+				},
+				end: function() {
+					$(".header_text").fadeIn(150);
+				},
+				autoChange : true,
+				changeTimeout: 3000,
+				stopTarget : ".header_stage"
+			});
+			<!--轮播图片end-->
+			$(".buton").click(function(){
+				var text=$(this).html();
+				if(text=="更多︾"){
+					
+					$(this).html("收缩︽");
+					$(".proshow1").show();
+					$(this).css("font-size","18px")
+				}else if(text="收缩︽"){
+					
+					$(this).html("更多︾")
+					$(".proshow1").hide();
+					$(this).css("font-size","18px")
+				}
+			});
+			
+			<!--注册验证-->
+			 	var ok1=false;
+                var ok2=false;
+                var ok3=false;
+                var ok4=false;
+				var ok5=false;
+                // 验证用户名
+                $('input[name="username"]').focus(function(){
+                    $(this).next().text(' 用户名应该为3-20位之间').css({"color":"#0099FF","font-weight":"bold"});
+                }).blur(function(){
+                    if($(this).val().length >= 3 && $(this).val().length <=12 && $(this).val()!=''){
+                        $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});
+                        ok1=true;
+                    }else{
+                        $(this).next().text(' 用户名应该为3-20位之间').css({"color":"#0099FF","font-weight":"bold"});;
+                    }
+                     
+                });
+ 
+                //验证密码
+                $('input[name="pwd"]').focus(function(){
+                    $(this).next().text(' 密码应该为6-20位之间').css({"color":"#0099FF","font-weight":"bold"});;
+                }).blur(function(){
+                    if($(this).val().length >= 6 && $(this).val().length <=20 && $(this).val()!=''){
+                        $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});;
+                        ok2=true;
+                    }else{
+                        $(this).next().text(' 密码应该为6-20位之间').css({"color":"#0099FF","font-weight":"bold"});;
+                    }
+                     
+                });
+ 
+                //验证确认密码
+                    $('input[name="conpwd"]').focus(function(){
+                    $(this).next().text(' 输入密码要一致').css({"color":"#0099FF","font-weight":"bold"});
+                }).blur(function(){
+                    if($(this).val().length >= 6 && $(this).val().length <=20 && $(this).val()!='' && $(this).val() == $('input[name="pwd"]').val()){
+                        $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});
+                        ok3=true;
+                    }else{
+                        $(this).next().text(' 输入密码要一致').css({"color":"#0099FF","font-weight":"bold"});
+                    }
+                     
+                });
+ 				
+				
+				
+				//验证手机号
+            $('input[name="phone"]').focus(function(){
+                    $(this).next().text(' 手机号为11位数字').css({"color":"#0099FF","font-weight":"bold"});
+                }).blur(function(){
+					
+                    if($(this).val().length == 11 && !isNaN($(this).val())){
+						 $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});;
+                        ok5=true;
+                    }else{
+                        $(this).next().text(' 手机号为11位数字').css({"color":"#0099FF","font-weight":"bold"});;
+                    }
+                     
+                });
+                //验证邮箱
+				
+                $('input[name="email"]').focus(function(){
+					var a=$(this).val();
+                    $(this).next().text(' 请输入正确的EMAIL格式').css({"color":"#0099FF","font-weight":"bold"});		
+                	}).blur(function(){
+						var a=$(this).val();
+						  var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+                    	if(!reg.test(a)){
+							
+                        	$(this).next().text(' 请输入正确的EMAIL格式').css({"color":"#0099FF","font-weight":"bold"});
+                   		 }else{      
+							    
+                        	$(this).next().text(' 输入成功').css({"color":"#1d2087","font-weight":"bold"});
+                        	ok4=true;
+                    	}  
+                });
+				//获取短信验证码
+				var validCode=true;
+				$(".msgs").click (function  () {
+					var time=30;
+					var code=$(this);
+					if (validCode) {
+						validCode=false;
+						code.addClass("msgs1");
+					var t=setInterval(function  () {
+						time--;
+						code.html(time+"秒");
+						if (time==0) {
+							clearInterval(t);
+						code.html("重新获取");
+							validCode=true;
+						code.removeClass("msgs1");
+			
+						}
+					},1000)
+					}
+				})
+				
+				
+                //提交按钮,所有验证通过方可提交
+ 
+                $('input[name="reg"]').click(function(){
+                    if(ok1 && ok2 && ok3 && ok4){
+                        $(this).submit();
+                    }else{
+					alert("错误");
+                        return false;
+                    }
+                });	
+			<!--注册验end证-->	
+				
+				
+						
+		})	
+  </script>
+  
+</head>
+
+<body>
+<center>
+ <div id="header">
+ 		<center>
+ 		<div id="contain">
+			<div id="log" class="c2">
+				<img src="images/微信LOGO-01_副本.jpg">
+			</div>
+			<div id="nav" class="c5">
+				<ul>
+					<a href="index.html"><li>首页</li></a>
+					<a href="about.html"><li>关于我们</li></a>
+				</ul>
+			</div>
+			<div id="tel" class="c3">
+				<ul>
+					<li class="number"><img src="images/tel .jpg">&nbsp;&nbsp;</li>
+					<li class="number1"><a href="">13916247927</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+					<li class="pub"><a class="btn-primary theme-login" href="javascript:;" name="log">登录|</a></li>
+					<li class="pub"><a class="btn-primary theme-login" href="javascript:;" name="reg">注册</a></li>
+				 </ul>
+			</div>
+			<!--登录窗体-->
+			<div class="theme-popover">
+				 <div class="theme-poptit">助策侠祝贺您重出江湖！
+					<a href="javascript:;" title="关闭" class="close">×</a>
+					<br/>
+				</div>
+				<div class="theme-popbod dform">
+					 <form class="theme-signin" name="loginform" action="" method="post">
+						<ol>
+						 <li><strong>用户名|手机号：</strong><input class="ipt" type="text" name="log" value="lanrenzhijia" size="20" /></li>
+						<li class="nn"><strong>	&nbsp;密   码：</strong><input class="ipt" type="password" name="logpwd" value="***" size="20" /></li>
+						<li><input class="btn btn-primary" type="submit" name="submit" value=" 登 录 " />&nbsp;<a href="">忘记密码？</a>&nbsp;<a href="">注册</a></li>
+						</ol>
+					</form>
+				</div>
+			 
+			</div>
+			 <div class="theme-popover-mask"></div>
+			<!--登录窗结束体-->
+			
+			<!--注册窗体-->
+				<div class="theme-popoveraa" id="reg">
+					 <div class="theme-poptitaa">
+					 助策侠期待你的江湖！
+						  <a href="javascript:;" title="关闭" class="close">×</a>
+						<br/>
+					 </div>
+					 <div class="theme-popbod dform">
+						   <form class="theme-signin" name="regform" action="" method="post">
+								<ol>
+									 <li><strong>用户名：</strong><input class="ipt" type="text" name="username" value="注册侠" size="20" /><span></span></li>
+									 <li><strong>密  码：</strong><input class="ipt" type="password" name="pwd" value="***" size="20" /><span></span></li>
+									 <li><strong>确认密码：</strong><input class="ipt" type="password" name="conpwd" value="***" size="20" /><span></span></li>
+									 <li><strong>手机号：</strong><input class="ipt" type="text" name="phone" value="您的手机号" size="20" /><span></span></li>
+									 <li><strong>验证码：</strong><input class="ipt" type="text" name="msg" size="20" /><span class="msgs">获取短信验证码</span></li>
+									  <li><strong>邮箱：</strong><input class="ipt" type="text" name="email" value="您的联系邮箱" size="20" /><span></span></li>
+									 <li><input class="btn btn-primary" type="submit" name="reg" value=" 注 册 " />
+									 </li>
+								</ol>
+						   </form>
+					 </div>
+			 
+				</div>
+			  <div class="theme-popover-maskaa"></div>
+			  
+			<!--注册窗结束体-->
+	
+	
+		</div>
+		<center>
+ </div>
+ <center>
+<div id="body">
+	<!--客服挂件开始-->
+    <div id="for_kefu_block">
+        <div class="kefu_box kefu_block">
+            <div class="kefu_title"><a class="kefu_close" href="javascript:void(0)"><img src="images/kf_top.png" width="183" height="31"></a></div>
+            <div class="kefu_con">
+                <div class="kefu_tel"></div>
+                <div class="kefu1">
+                    <div class="kefu_con_title">
+                        <ul class="jszcfwul clearfix">
+                            <li class="kefu_con_title_li1"><img src="images/kf_line2.png" width="14" height="14"></li>
+                            <li class="kefu_con_title_li2">注册服务</li>
+                        </ul>
+                    </div>
+                    <div class="kefu_con_con1">
+                        <ul class="clearfix">
+                            <li class="neititle"><div class="uline">开店顾问</div></li>
+                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:965258148:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
+                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:12345678:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
+                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:12345678:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
+                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:12345678:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
+                            <li class="neititle"><div class="uline">企业定制</div></li>
+                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:12345678:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="kefu5">
+                    <div class="kefu_con_title">
+                        <ul class="clearfix">
+                            <li class="kefu_con_title_li1"><img src="images/kf_line2.png" width="14" height="14"></li>
+                            <li class="kefu_con_title_li2">技术支持</li>
+                        </ul>
+                    </div>
+                    <div class="kefu_con_con">
+                        <ul class="clearfix">
+                            <li><a href="tencent://message/?uin=821821069&amp;Site=咨询&amp;Menu=yes" target="blank" title="售后1" rel="nofollow"><img src="images/QQ1.png" width="34" height="34"><span>售后1</span></a></li>
+                            <li><a href="tencent://message/?uin=821852069&amp;Site=咨询&amp;Menu=yes" target="blank" title="售后2" rel="nofollow"><img src="images/QQ1.png" width="34" height="34"><span>售后2</span></a></li>
+                            <li><a href="tencent://message/?uin=821821069&amp;Site=咨询&amp;Menu=yes" target="blank" title="售后3" rel="nofollow"><img src="images/QQ1.png" width="34" height="34"><span>售后3</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="kefu_tt"><a href="#"><img src="images/kf_foot.png" /></a></div>
+        </div>
+        
+        <div class="kefu_flag"><img src="images/kefu_flag.gif" /></div>
+        
+    </div>
+    
+    <script language="javascript">
+    $(document).ready(function(){
+        $(".kefu_close").click(function(){
+            $(".kefu_block").hide();
+            $(".kefu_flag").show();
+            
+        })
+        $(".kefu_flag").click(function(){
+            $(this).hide();
+            $(".kefu_block").show();
+            
+        })
+    });
+    </script>
+<!--客服挂件结束-->
+
+
+
+	<div id="bodyer">
+		<div id="lunbo">
+			<div id="wrapper">
+				<ul class="lanrenzhijia">
+					<center>
+						<li class="lanrenzhijia_li show_images_1">
+							<a href="http://www.lanrenzhijia.com/" target="_blank"><img class="show_images_1_img" src="images/1.png" alt="" /></a></li>
+						<li class="lanrenzhijia_li show_images_2">
+							<a href="http://www.lanrenzhijia.com/" target="_blank"><img class="show_images_2_img" src="images/4.png" alt="" /></a></li>
+						<li class="lanrenzhijia_li show_images_3">
+							<a href="http://www.lanrenzhijia.com/" target="_blank"><img class="show_images_3_img" src="images/2.png" alt="" /></a></li>
+						<li class="lanrenzhijia_li show_images_4">
+							<a href="http://www.lanrenzhijia.com/" target="_blank"><img class="show_images_4_img" src="images/3.png" alt="" /></a></li>
+					</center>
+				</ul>
+				<div class="header_text" id="belt"></div>
+					<div class="btnlun">
+						<a class="btnlun1" rel="1"></a>
+						<a class="btnlun2" rel="2"></a>
+						<a class="btnlun3" rel="3"></a>
+						<a class="btnlun4" rel="4"></a>
+					</div>
+		 	 </div>
+	 	 </div>
+		
+           <hr/>
+		   <!--product-->
+		<div id="product">
+			<table width="100%">
+				<tr class="new" >
+					<td  style="text-align:left;">&nbsp;&nbsp;&nbsp;<a href="productlist.html">最新套餐</a></td>
+					<td  style="text-align:right;"><button class="buttons buton">更多︾</button></td>
+				</tr>
+			</table>
+			<div id="show">
+				<div class="proshow">
+                	<a href="productdetail.html">
+					<div class="hov">
+						<br/>
+						<img src="images/宝山套餐.jpg"  width="95%" height="200px">
+						<br/>
+						<p class="title">高额补贴，有地有钱</p>
+						<p class="spe">&nbsp;&nbsp;特殊行业除外,其他行业不限,不限注册资本,文化信息科类，不限注册资本</p>
+						<p ><button class="pay">立即申请</button></p><br/>&nbsp;
+					</div>
+                    </a>
+				</div>
+				<div class="proshow">
+               <a href="productdetail.html">
+					<div class="hov">
+						<br/>
+						<img src="images/嘉定4.jpg" width="95%" height="200px">
+						<br/>
+						<p class="title">高额补贴，有地有钱</p>
+						<p class="spe">&nbsp;&nbsp;特殊行业除外,其他行业不限,不限注册资本,文化信息科类，不限注册资本</p>
+						<p ><button class="pay">立即申请</button></p>
+					</div>
+                    </a>
+				</div>
+				<div class="proshow">
+                 <a href="productdetail.html">
+					<div class="hov">
+						<br/>
+						<img src="images/虹口套餐.jpg"  width="95%" height="200px">
+						<br/>
+						<p class="title">高额补贴，有地有钱</p>
+						<p class="spe">&nbsp;&nbsp;特殊行业除外,其他行业不限,不限注册资本,文化信息科类，不限注册资本</p>
+						<p ><button class="pay">立即申请</button></p>
+					</div>
+                    </a>
+				</div>
+				<div class="proshow1">
+					<center>
+                   <a href="productdetail.html">
+					<div class="hov1">
+						<br/>
+						<img src="images/嘉定4.jpg" width="95%" height="200px">
+						<br/>
+						<p class="title">高额补贴，有地有钱</p>
+						<p class="spe">&nbsp;&nbsp;特殊行业除外,其他行业不限,不限注册资本,文化信息科类，不限注册资本</p>
+						<p ><button class="pay">立即申请</button></p>
+					</div>
+                    </a>
+					</center>
+				</div>
+				<div class="proshow1">
+                <a href="productdetail.html">
+					<div class="hov1">
+						<br/>
+						<img src="images/宝山套餐.jpg"  width="95%" height="200px">
+						<br/>
+						<p class="title">高额补贴，有地有钱</p>
+						<p class="spe">&nbsp;&nbsp;特殊行业除外,其他行业不限,不限注册资本,文化信息科类，不限注册资本</p>
+						<p ><button class="pay">立即申请</button></p>
+						
+					</div>
+                    </a>
+				</div>
+				<div class="proshow1">
+                <a href="productdetail.html">
+					<div class="hov1">
+						<br/>
+						<img src="images/虹口套餐.jpg" width="95%" height="200px">
+						<br/>
+						<p class="title">高额补贴，有地有钱</p>
+						<p class="spe">&nbsp;&nbsp;特殊行业除外,其他行业不限,不限注册资本,文化信息科类，不限注册资本</p>
+						<p ><button class="pay">立即申请</button></p>
+					</div>
+                    </a>
+				</div>		
+			</div>
+			
+		</div>
+		<!--productend-->	
+	
+		<div id="serv">
+			<table width="100%">
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr class="moreserver">
+					<td  style="text-align:center;font-size:30px;"><a href="productlist.html">更多服务</a></td>
+				</tr>
+			</table>
+			<div id="showserv">
+				<div id="demo">
+					<div id="indemo">
+						<div id="demo1">
+							<a href="#"><img src="images/服务-01.jpg" border="0" width="250px" height="250px"/></a>
+							<a href="#"><img src="images/服务-02.jpg" border="0" width="250px"  height="250px"/></a>
+							<a href="#"><img src="images/服务-03.jpg" border="0" width="250px"  height="250px" /></a>
+							<a href="#"><img src="images/服务-04.jpg" border="0" width="250px"  height="250px"/></a>						
+						</div>
+						<div id="demo2">						
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<script>
+				<!--
+				var speed=10;
+				var tab=document.getElementById("demo");
+				var tab1=document.getElementById("demo1");
+				var tab2=document.getElementById("demo2");
+				tab2.innerHTML=tab1.innerHTML;
+				function Marquee(){
+				if(tab2.offsetWidth-tab.scrollLeft<=0)
+				tab.scrollLeft-=tab1.offsetWidth
+				else{
+				tab.scrollLeft++;
+				}
+				}
+				var MyMar=setInterval(Marquee,speed);
+				tab.onmouseover=function() {clearInterval(MyMar)};
+				tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+				-->
+		</script>
+		</div >	
+		<div class="help">
+			为什么选择我们<br/><br/><img src="images/point.png">
+		</div>	
+	</div>			
+</div>
+</center>
+<div id="he">
+	<center>
+        <div id="fri">
+            
+            <table>
+                <tr><td colspan="2" style="font-size:20px; color:black;font-weight:bold;">合作伙伴</td></tr>
+                <tr><td><a href="">新浪</a></td><td><a href="">淘宝</a></td></tr>
+            </table>
+        </div>
+    </center>
+</div>
+<div id="foot">
+	<center>
+        <div id="footer">
+            
+            <table>
+                <tr><td><a href="">网站首页&nbsp;</a>|<a href="">&nbsp;关于我们</a></td></tr>
+                <tr><td>&copy;Copyright 2015-2015. All rights reserved. 上海水墨盛世网络技术有限公司   沪ICP备15039897号-1 </td></tr>
+            </table>
+        </div>
+    </center>
+</div>
+</body>
+
+</html>
