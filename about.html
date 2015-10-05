@@ -2,173 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  	<link rel="stylesheet" href="css/loginRe.css" media="all">
 	<link href="css/moder.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/about.css" media="all">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	 <script type="text/javascript" src="js/jquery_cart.js"></script> 
-	<!--moder end-->
-		<link rel="stylesheet" href="css/about.css" media="all">
-  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
-  </script>
-  <script type="text/javascript">
-  		$(function(){
-			
-			$("#nav ul li").hover(
-				function () {
-					 $(this).css({"background-color":"#0099FF","font-size":"18px"});
-					
-				 },
-				function () {
-				 $(this).css({"background-color":"#1d2087","font-size":"16px"});
-				 }
-			 );
-			 $(".theme-login[name='log']").click(function(){
-				$('.theme-popover-mask').fadeIn(100);
-				$('.theme-popover').slideDown(200);
-			});
-			$('.theme-poptit .close').click(function(){
-				$('.theme-popover-mask').fadeOut(100);
-				$('.theme-popover').slideUp(200);
-			});
-			 $(".theme-login[name='reg']").click(function(){
-				$('.theme-popover-maskaa').fadeIn(100);
-				$('.theme-popoveraa').slideDown(200);
-			});
-			$('.theme-poptitaa .close').click(function(){
-				$('.theme-popover-maskaa').fadeOut(100);
-				$('.theme-popoveraa').slideUp(200);
-			});
-			
-			/*$("#cont1 ul li").hover(
-				function () {
-					 $(this).css({"background-color":"#0099FF","color":"white"});
-					 $(this).siblings().css({"background-color":"#F6F6F6","color":"black"});
-					 var index = $(this).html();
-					 if(index=="联系我们"){
-					 	$("#lian").slideDown(1000);
-					 }else{
-					 	$("#lian").slideUp(20);
-					 }
-					
-				 }
-			 );*/
-			<!--注册验证-->
-			 	var ok1=false;
-                var ok2=false;
-                var ok3=false;
-                var ok4=false;
-				var ok5=false;
-                // 验证用户名
-                $('input[name="username"]').focus(function(){
-                    $(this).next().text(' 用户名应该为3-20位之间').css({"color":"red","font-weight":"bold"});
-                }).blur(function(){
-                    if($(this).val().length >= 3 && $(this).val().length <=12 && $(this).val()!=''){
-                        $(this).next().text(' 输入成功').css({"color":"green","font-weight":"bold"});
-                        ok1=true;
-                    }else{
-                        $(this).next().text(' 用户名应该为3-20位之间').css({"color":"red","font-weight":"bold"});;
-                    }
-                     
-                });
- 
-                //验证密码
-                $('input[name="pwd"]').focus(function(){
-                    $(this).next().text(' 密码应该为6-20位之间').css({"color":"red","font-weight":"bold"});;
-                }).blur(function(){
-                    if($(this).val().length >= 6 && $(this).val().length <=20 && $(this).val()!=''){
-                        $(this).next().text(' 输入成功').css({"color":"green","font-weight":"bold"});;
-                        ok2=true;
-                    }else{
-                        $(this).next().text(' 密码应该为6-20位之间').css({"color":"red","font-weight":"bold"});;
-                    }
-                     
-                });
- 
-                //验证确认密码
-                    $('input[name="conpwd"]').focus(function(){
-                    $(this).next().text(' 输入密码要一致').css({"color":"red","font-weight":"bold"});
-                }).blur(function(){
-                    if($(this).val().length >= 6 && $(this).val().length <=20 && $(this).val()!='' && $(this).val() == $('input[name="pwd"]').val()){
-                        $(this).next().text(' 输入成功').css({"color":"green","font-weight":"bold"});
-                        ok3=true;
-                    }else{
-                        $(this).next().text(' 输入密码要一致').css({"color":"red","font-weight":"bold"});
-                    }
-                     
-                });
- 				
-				
-				
-				//验证手机号
-            $('input[name="phone"]').focus(function(){
-                    $(this).next().text(' 手机号为11位数字').css({"color":"red","font-weight":"bold"});
-                }).blur(function(){
-					
-                    if($(this).val().length == 11 && !isNaN($(this).val())){
-						 $(this).next().text(' 输入成功').css({"color":"green","font-weight":"bold"});;
-                        ok5=true;
-                    }else{
-                        $(this).next().text(' 手机号为11位数字').css({"color":"red","font-weight":"bold"});;
-                    }
-                     
-                });
-                //验证邮箱
-				
-                $('input[name="email"]').focus(function(){
-					var a=$(this).val();
-                    $(this).next().text(' 请输入正确的EMAIL格式').css({"color":"red","font-weight":"bold"});		
-                	}).blur(function(){
-						var a=$(this).val();
-						  var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-                    	if(!reg.test(a)){
-							
-                        	$(this).next().text(' 请输入正确的EMAIL格式').css({"color":"red","font-weight":"bold"});
-                   		 }else{      
-							    
-                        	$(this).next().text(' 输入成功').css({"color":"green","font-weight":"bold"});
-                        	ok4=true;
-                    	}  
-                });
-				//获取短信验证码
-				var validCode=true;
-				$(".msgs").click (function  () {
-					var time=30;
-					var code=$(this);
-					if (validCode) {
-						validCode=false;
-						code.addClass("msgs1");
-					var t=setInterval(function  () {
-						time--;
-						code.html(time+"秒");
-						if (time==0) {
-							clearInterval(t);
-						code.html("重新获取");
-							validCode=true;
-						code.removeClass("msgs1");
-			
-						}
-					},1000)
-					}
-				})
-				
-				
-                //提交按钮,所有验证通过方可提交
- 
-                $('input[name="reg"]').click(function(){
-                    if(ok1 && ok2 && ok3 && ok4){
-                        $(this).submit();
-                    }else{
-					alert("错误");
-                        return false;
-                    }
-                });	
-			<!--注册验end证-->	
-		
-		})	
-  </script>
-  
+	<script type="text/javascript" src="js/jquery_cart.js"></script> 
+	<script type="text/javascript" src="js/common/nav.js"></script>
 </head>
-
 <body>
 <center>
  <div id="header">
@@ -192,53 +31,6 @@
 					<li class="pub"><a class="btn-primary theme-login" href="javascript:;" name="reg">注册</a></li>
 			  </ul>
 			</div>
-			<!--登录窗体-->
-			<div class="theme-popover">
-				 <div class="theme-poptit">助策侠祝贺您重出江湖！
-					<a href="javascript:;" title="关闭" class="close">×</a>
-					<br/>
-				</div>
-				<div class="theme-popbod dform">
-					 <form class="theme-signin" name="loginform" action="" method="post">
-						<ol>
-						 <li><strong>用户名|手机号：</strong><input class="ipt" type="text" name="log" value="lanrenzhijia" size="20" /></li>
-						<li class="nn"><strong>	&nbsp;密   码：</strong><input class="ipt" type="password" name="logpwd" value="***" size="20" /></li>
-						<li><input class="btn btn-primary" type="submit" name="submit" value=" 登 录 " />&nbsp;<a href="">忘记密码？</a>&nbsp;<a href="">注册</a></li>
-						</ol>
-					</form>
-				</div>
-			 
-			</div>
-			 <div class="theme-popover-mask"></div>
-			<!--登录窗结束体-->
-			
-			<!--注册窗体-->
-				<div class="theme-popoveraa" id="reg">
-					 <div class="theme-poptitaa">
-					 助策侠期待你的江湖！
-						  <a href="javascript:;" title="关闭" class="close">×</a>
-						<br/>
-					 </div>
-					 <div class="theme-popbod dform">
-						   <form class="theme-signin" name="loginform" action="" method="post">
-								<ol>
-									 <li><strong>用户名：</strong><input class="ipt" type="text" name="username" value="注册侠" size="20" /><span></span></li>
-									 <li><strong>密  码：</strong><input class="ipt" type="password" name="pwd" value="***" size="20" /><span></span></li>
-									 <li><strong>确认密码：</strong><input class="ipt" type="password" name="conpwd" value="***" size="20" /><span></span></li>
-									 <li><strong>手机号：</strong><input class="ipt" type="text" name="phone" value="您的手机号" size="20" /><span></span></li>
-									 <li><strong>验证码：</strong><input class="ipt" type="text" name="msg" size="20" /><span class="msgs">获取短信验证码</span></li>
-									  <li><strong>邮箱：</strong><input class="ipt" type="text" name="email" value="您的联系邮箱" size="20" /><span></span></li>
-									 <li><input class="btn btn-primary" type="submit" name="reg" value=" 注 册 " />
-									 </li>
-								</ol>
-						   </form>
-					 </div>
-			 
-				</div>
-			  <div class="theme-popover-maskaa"></div>
-			  
-			<!--注册窗结束体-->
-	
 	
 		</div>
 		<!--中间内容end-->
@@ -249,8 +41,6 @@
 	<div id="bodyer">
 		<div id="cont">
 			<div id="cont1">
-				
-				
 				<ul>
 					<li class="rr">关于我们</li>
                     <li class="ty">&nbsp;</li>
