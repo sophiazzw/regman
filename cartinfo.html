@@ -1,371 +1,202 @@
 <!doctype html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  	<link rel="stylesheet" href="css/loginRe.css" media="all">
-	<link href="css/moder.css" type="text/css" rel="stylesheet" />
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/checkOut.css" />
-	<link rel="stylesheet" href="css/cartinfo.css"/>
-	<script type="text/javascript" src="js/demo.js"></script>
-	 <script type="text/javascript" src="js/jquery_cart.js"></script>  
-       
-  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
-  </script>
-  <script type="text/javascript">
-  		$(function(){
-			$("#nav ul li").hover(
-				function () {
-					 $(this).css({"background-color":"#0099FF","font-size":"18px"});
-				 },
-				function () {
-				 $(this).css({"background-color":"#1d2087","font-size":"16px"});
-				 }
-			 );
-			 $(".theme-login[name='log']").click(function(){
-				$('.theme-popover-mask').fadeIn(100);
-				$('.theme-popover').slideDown(200);
-			});
-			$('.theme-poptit .close').click(function(){
-				$('.theme-popover-mask').fadeOut(100);
-				$('.theme-popover').slideUp(200);
-			});
-			 $(".theme-login[name='reg']").click(function(){
-				$('.theme-popover-maskaa').fadeIn(100);
-				$('.theme-popoveraa').slideDown(200);
-			});
-			$('.theme-poptitaa .close').click(function(){
-				$('.theme-popover-maskaa').fadeOut(100);
-				$('.theme-popoveraa').slideUp(200);
-			});
-			<!--注册验证-->
-			 	var ok1=false;
-                var ok2=false;
-                var ok3=false;
-                var ok4=false;
-				var ok5=false;
-                // 验证用户名
-                $('input[name="username"]').focus(function(){
-                    $(this).next().text(' 用户名应该为3-20位之间').css({"color":"#0099FF","font-weight":"bold"});
-                }).blur(function(){
-                    if($(this).val().length >= 3 && $(this).val().length <=12 && $(this).val()!=''){
-                        $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});
-                        ok1=true;
-                    }else{
-                        $(this).next().text(' 用户名应该为3-20位之间').css({"color":"#0099FF","font-weight":"bold"});;
-                    }
-                     
-                });
- 
-                //验证密码
-                $('input[name="pwd"]').focus(function(){
-                    $(this).next().text(' 密码应该为6-20位之间').css({"color":"#0099FF","font-weight":"bold"});;
-                }).blur(function(){
-                    if($(this).val().length >= 6 && $(this).val().length <=20 && $(this).val()!=''){
-                        $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});;
-                        ok2=true;
-                    }else{
-                        $(this).next().text(' 密码应该为6-20位之间').css({"color":"#0099FF","font-weight":"bold"});;
-                    }
-                     
-                });
- 
-                //验证确认密码
-                    $('input[name="conpwd"]').focus(function(){
-                    $(this).next().text(' 输入密码要一致').css({"color":"#0099FF","font-weight":"bold"});
-                }).blur(function(){
-                    if($(this).val().length >= 6 && $(this).val().length <=20 && $(this).val()!='' && $(this).val() == $('input[name="pwd"]').val()){
-                        $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});
-                        ok3=true;
-                    }else{
-                        $(this).next().text(' 输入密码要一致').css({"color":"#0099FF","font-weight":"bold"});
-                    }
-                     
-                });
- 				
-				
-				
-				//验证手机号
-            $('input[name="phone"]').focus(function(){
-                    $(this).next().text(' 手机号为11位数字').css({"color":"#0099FF","font-weight":"bold"});
-                }).blur(function(){
-					
-                    if($(this).val().length == 11 && !isNaN($(this).val())){
-						 $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});;
-                        ok5=true;
-                    }else{
-                        $(this).next().text(' 手机号为11位数字').css({"color":"#0099FF","font-weight":"bold"});;
-                    }
-                     
-                });
-                //验证邮箱
-				
-                $('input[name="email"]').focus(function(){
-					var a=$(this).val();
-                    $(this).next().text(' 请输入正确的EMAIL格式').css({"color":"#0099FF","font-weight":"bold"});		
-                	}).blur(function(){
-						var a=$(this).val();
-						  var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-                    	if(!reg.test(a)){
-							
-                        	$(this).next().text(' 请输入正确的EMAIL格式').css({"color":"#0099FF","font-weight":"bold"});
-                   		 }else{      
-							    
-                        	$(this).next().text(' 输入成功').css({"color":"#1d2087","font-weight":"bold"});
-                        	ok4=true;
-                    	}  
-                });
-				//获取短信验证码
-				var validCode=true;
-				$(".msgs").click (function  () {
-					var time=30;
-					var code=$(this);
-					if (validCode) {
-						validCode=false;
-						code.addClass("msgs1");
-					var t=setInterval(function  () {
-						time--;
-						code.html(time+"秒");
-						if (time==0) {
-							clearInterval(t);
-						code.html("重新获取");
-							validCode=true;
-						code.removeClass("msgs1");
-			
-						}
-					},1000)
-					}
-				})
-				
-				
-                //提交按钮,所有验证通过方可提交
- 
-                $('input[name="reg"]').click(function(){
-                    if(ok1 && ok2 && ok3 && ok4){
-                        $(this).submit();
-                    }else{
-					alert("错误");
-                        return false;
-                    }
-                });	
-			<!--注册验end证-->	
-		
-		})	
-  </script>
-  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/common/moder.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/checkOut.css" />
+    <link rel="stylesheet" href="css/cartinfo.css" />
+    <script type="text/javascript" src="js/demo.js"></script>
+    <script type="text/javascript" src="js/jquery_cart.js"></script>
 </head>
 
 <body>
-<center>
- <div id="header">
- 		<center>
-		<!--中间内容开始-->
- 		<div id="contain">
-			<div id="log" class="c2">
-				<img src="images/微信LOGO-01_副本.jpg">
-			</div>
-			<div id="nav" class="c5">
-				<ul>
-					<a href="index.html"><li>首页</li></a>
-					<a href="about.html"><li>关于我们</li></a>
-				</ul>
-			</div>
-			<div id="tel" class="c3">
-				<ul>
-					<li class="number"><img src="images/tel .jpg">&nbsp;&nbsp;</li>
-					<li class="number1"><a href="">13916247927</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-					<li class="pub"><a class="btn-primary theme-login" href="javascript:;" name="log">登录|</a></li>
-					<li class="pub"><a class="btn-primary theme-login" href="javascript:;" name="reg">注册</a></li>
-			  </ul>
-			</div>
-			<!--登录窗体-->
-			<div class="theme-popover">
-				 <div class="theme-poptit">助策侠祝贺您重出江湖！
-					<a href="javascript:;" title="关闭" class="close">×</a>
-					<br/>
-				</div>
-				<div class="theme-popbod dform">
-					 <form class="theme-signin" name="loginform" action="" method="post">
-						<ol>
-						 <li><strong>用户名|手机号：</strong><input class="ipt" type="text" name="log" value="lanrenzhijia" size="20" /></li>
-						<li class="nn"><strong>	&nbsp;密   码：</strong><input class="ipt" type="password" name="logpwd" value="***" size="20" /></li>
-						<li><input class="btn btn-primary" type="submit" name="submit" value=" 登 录 " />&nbsp;<a href="">忘记密码？</a>&nbsp;<a href="">注册</a></li>
-						</ol>
-					</form>
-				</div>
-			 
-			</div>
-			 <div class="theme-popover-mask"></div>
-			<!--登录窗结束体-->
-			
-			<!--注册窗体-->
-				<div class="theme-popoveraa" id="reg">
-					 <div class="theme-poptitaa">
-					 助策侠期待你的江湖！
-						  <a href="javascript:;" title="关闭" class="close">×</a>
-						<br/>
-					 </div>
-					 <div class="theme-popbod dform">
-						   <form class="theme-signin" name="loginform" action="" method="post">
-								<ol>
-									 <li><strong>用户名：</strong><input class="ipt" type="text" name="username" value="注册侠" size="20" /><span></span></li>
-									 <li><strong>密  码：</strong><input class="ipt" type="password" name="pwd" value="***" size="20" /><span></span></li>
-									 <li><strong>确认密码：</strong><input class="ipt" type="password" name="conpwd" value="***" size="20" /><span></span></li>
-									 <li><strong>手机号：</strong><input class="ipt" type="text" name="phone" value="您的手机号" size="20" /><span></span></li>
-									 <li><strong>验证码：</strong><input class="ipt" type="text" name="msg" size="20" /><span class="msgs">获取短信验证码</span></li>
-									  <li><strong>邮箱：</strong><input class="ipt" type="text" name="email" value="您的联系邮箱" size="20" /><span></span></li>
-									 <li><input class="btn btn-primary" type="submit" name="reg" value=" 注 册 " />
-									 </li>
-								</ol>
-						   </form>
-					 </div>
-			 
-				</div>
-			  <div class="theme-popover-maskaa"></div>
-			  
-			<!--注册窗结束体-->
-	
-		</div>
-		<!--中间内容开始-->
-		<center>
- </div>
- <center>
-<div id="body">
-	<div id="bodyer">
-	<!--收货地址body部分开始-->  
- <div class="border_top_cart">
-  <script type="text/javascript">
-    var checkoutConfig={
-        addressMatch:'common',
-        addressMatchVarName:'data',
-        hasPresales:false,
-        hasBigTv:false,
-        hasAir:false,
-        hasScales:false,
-        hasGiftcard:false,
-        totalPrice:244.00,
-        postage:10,//运费
-        postFree:true,//活动是否免邮了
-        bcPrice:150,//计算界值
-        activityDiscountMoney:0.00,//活动优惠
-        showCouponBox:0,
-        invoice:{
-            NA:"0",
-            personal:"1",
-            company:"2",
-            electronic:"4"
-        }
-    };
-    var miniCartDisable=true;
-</script>
-		<div class="catbox">
-		
-		<div class="mycar">我的订单:</div>
-		<br/>
-		<table id="cartTable">
-		<thead>
-			<tr>
-				<th><label><input class="check-all check" type="checkbox"/>&nbsp;全选</label></th>
-				<th>商品</th>
-				<th>单价</th>
-				<th>数量</th>
-				<th>小计</th>
-				<th>操作</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="checkbox"><input class="check-one check" type="checkbox"/></td>
-				<td class="goods"><img src="images/宝山套餐.jpg" /><span>Casio/卡西欧 EX-TR350</span></td>
-				<td class="price">22</td>
-			  <td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/>
-				<span class="add">+</span></td>
-				<td class="subtotal">22</td>
-				<td class="operation"><span class="delete">删除</span></td>
-			</tr>
-			<tr>
-				<td class="checkbox"><input class="check-one check" type="checkbox"/></td>
-				<td class="goods"><img src="images/虹口套餐.jpg" /><span>Canon/佳能 PowerShot SX50 HS</span></td>
-				<td class="price">3888.50</td>
-			  <td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/>
-				<span class="add">+</span></td>
-				<td class="subtotal">3888.50</td>
-				<td class="operation"><span class="delete">删除</span></td>
-			</tr>
-			<tr>
-				<td class="checkbox"><input class="check-one check" type="checkbox"/></td>
-				<td class="goods"><img src="images/嘉定.jpg" /><span>Sony/索尼 DSC-WX300</span></td>
-				<td class="price">1428.50</td>
-			  <td class="count"><span class="reduce"></span><input class="count-input" type="text" value="1"/>
-				<span class="add">+</span></td>
-				<td class="subtotal">1428.50</td>
-				<td class="operation"><span class="delete">删除</span></td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<div class="foot" id="foot">
-		<label class="fl select-all"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>
-		<a class="fl delete" id="deleteAll" href="javascript:;">删除</a>
-		<div class="fr closings"><a href="orderinfo.html"><button style="width:100px;height:35px;border:0px;text-align:center;font-weight:bold;letter-spacing:2px;background-color:#F95100;color:white;padding-right:10px;">结 算</button>&nbsp;&nbsp;</a></div>
-		<div class="fr closing" id="J_useNewAddr" data-state="off"><div style="margin-top:-3px;"><button style="width:100px;height:35px;border:0px;text-align:center;font-weight:bold;letter-spacing:2px;background-color:#F95100;color:white;">提交材料</button></div></div>
-		<div class="fr total">合计:￥ <span id="priceTotal">0.00</span></div>
-		<div class="fr selected" id="selected">已选商品:<span id="selectedTotal">0</span>件<span class="arrow up">︽</span><span class="arrow down">︾</span></div>
-		<div class="selected-view">
-        	&nbsp;已选择商品：
-			<div id="selectedViewList" class="clearfix">
-				<div><img src="images/1.jpg"><span>取消选择</span></div>
-			</div>
-			<span class="arrow">◆<span>◆</span></span>		</div>
-	</div>
-	
-	
-	 <!--点击弹出新增/收货地址界面start-->
-    <div class="xm-edit-addr-box" id="J_editAddrBox">
-        <div class="bd">
-            <div class="item">
-                <label>收货人姓名<span>*</span></label> 
-                <input type="text" name="userAddress[consignee]" id="Consignee" class="input" placeholder="收货人姓名" maxlength="15" autocomplete='off'>
-                <p class="tip-msg tipMsg"></p>
-            </div>
-            <div class="item">
-                <label>联系电话<span>*</span></label> 
-                <input type="text" name="userAddress[tel]" class="input" id="Telephone" placeholder="11位手机号" autocomplete='off'>
-                <p class="tel-modify-tip" id="telModifyTip"></p>
-                <p class="tip-msg tipMsg"></p>
-            </div>
-            <div class="item">
-                <label>地址<span>*</span></label>
-                <select name="userAddress[province]" id="Provinces" class="select-1">
-                    <option>省份/自治区</option>
-                </select>
-                <select name="userAddress[city]"  id="Citys" class="select-2" disabled>
-                    <option>城市/地区/自治州</option>
-                </select>
-                <select name="userAddress[county]"  id="Countys" class="select-3" disabled>
-                    <option>区/县</option>
-                </select>
-                <textarea   name="userAddress[street]" class="input-area" id="Street" placeholder="路名或街道地址，门牌号"></textarea>
-                <p class="tip-msg tipMsg"></p>
-            </div>
-            <div class="item">
-                <label>邮政编码<span>*</span></label> 
-                <input type="text" name="userAddress[zipcode]" id="Zipcode" class="input" placeholder="邮政编码"  autocomplete='off'>
-                <p class="zipcode-tip" id="zipcodeTip"></p>
-                <p class="tip-msg tipMsg"></p>
-            </div>
-            <div class="item">
-                <label>地址标签<span>*</span></label> 
-                <input type="text" name="userAddress[tag]" id="Tag" class="input" placeholder='地址标签：如"家"、"公司"。限5个字内'  >
-                <p class="tip-msg tipMsg"></p>
-            </div>
+    <center>
+        <div id="header">
+            <center>
+                <!--中间内容开始-->
+                <div id="contain">
+                    <div id="log" class="c2">
+                        <img src="images/微信LOGO-01_副本.jpg">
+                    </div>
+                    <div id="nav" class="c5">
+                        <ul>
+                            <a href="index.html">
+                                <li>首页</li>
+                            </a>
+                            <a href="about.html">
+                                <li>关于我们</li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div id="tel" class="c3">
+                        <ul>
+                            <li class="number"><img src="images/tel .jpg">&nbsp;&nbsp;</li>
+                            <li class="number1"><a href="">13916247927</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                            <li class="pub"><a class="btn-primary theme-login" href="javascript:;" name="log">登录|</a></li>
+                            <li class="pub"><a class="btn-primary theme-login" href="javascript:;" name="reg">注册</a></li>
+                        </ul>
+                    </div>
+                    <!--<?=$this->component('loginRe')?>-->
+                </div>
+                <!--中间内容开始-->
+                <center>
         </div>
-        <div class="ft clearfix">
-            <button  type="button"  class="btn btn-lineDake btn-small " id="J_editAddrCancel">取消</button>
-             <button type="button" class="btn btn-primary  btn-small " id="J_editAddrOk">保存</button>
-        </div>
-    </div>
-	<!--
+        <center>
+            <div id="body">
+                <div id="bodyer">
+                    <!--收货地址body部分开始-->
+                    <div class="border_top_cart">
+                        <script type="text/javascript">
+                        var checkoutConfig = {
+                            addressMatch: 'common',
+                            addressMatchVarName: 'data',
+                            hasPresales: false,
+                            hasBigTv: false,
+                            hasAir: false,
+                            hasScales: false,
+                            hasGiftcard: false,
+                            totalPrice: 244.00,
+                            postage: 10, //运费
+                            postFree: true, //活动是否免邮了
+                            bcPrice: 150, //计算界值
+                            activityDiscountMoney: 0.00, //活动优惠
+                            showCouponBox: 0,
+                            invoice: {
+                                NA: "0",
+                                personal: "1",
+                                company: "2",
+                                electronic: "4"
+                            }
+                        };
+                        var miniCartDisable = true;
+                        </script>
+                        <div class="catbox">
+                            <div class="mycar">我的订单:</div>
+                            <br/>
+                            <table id="cartTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <label>
+                                                <input class="check-all check" type="checkbox" />&nbsp;全选</label>
+                                        </th>
+                                        <th>商品</th>
+                                        <th>单价</th>
+                                        <th>数量</th>
+                                        <th>小计</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="checkbox">
+                                            <input class="check-one check" type="checkbox" />
+                                        </td>
+                                        <td class="goods"><img src="images/宝山套餐.jpg" /><span>Casio/卡西欧 EX-TR350</span></td>
+                                        <td class="price">22</td>
+                                        <td class="count"><span class="reduce"></span>
+                                            <input class="count-input" type="text" value="1" />
+                                            <span class="add">+</span></td>
+                                        <td class="subtotal">22</td>
+                                        <td class="operation"><span class="delete">删除</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="checkbox">
+                                            <input class="check-one check" type="checkbox" />
+                                        </td>
+                                        <td class="goods"><img src="images/虹口套餐.jpg" /><span>Canon/佳能 PowerShot SX50 HS</span></td>
+                                        <td class="price">3888.50</td>
+                                        <td class="count"><span class="reduce"></span>
+                                            <input class="count-input" type="text" value="1" />
+                                            <span class="add">+</span></td>
+                                        <td class="subtotal">3888.50</td>
+                                        <td class="operation"><span class="delete">删除</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="checkbox">
+                                            <input class="check-one check" type="checkbox" />
+                                        </td>
+                                        <td class="goods"><img src="images/嘉定.jpg" /><span>Sony/索尼 DSC-WX300</span></td>
+                                        <td class="price">1428.50</td>
+                                        <td class="count"><span class="reduce"></span>
+                                            <input class="count-input" type="text" value="1" />
+                                            <span class="add">+</span></td>
+                                        <td class="subtotal">1428.50</td>
+                                        <td class="operation"><span class="delete">删除</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="foot" id="foot">
+                                <label class="fl select-all">
+                                    <input type="checkbox" class="check-all check" />&nbsp;全选</label>
+                                <a class="fl delete" id="deleteAll" href="javascript:;">删除</a>
+                                <div class="fr closings">
+                                    <a href="orderinfo.html">
+                                        <button style="width:100px;height:35px;border:0px;text-align:center;font-weight:bold;letter-spacing:2px;background-color:#F95100;color:white;padding-right:10px;">结 算</button>&nbsp;&nbsp;</a>
+                                </div>
+                                <div class="fr closing" id="J_useNewAddr" data-state="off">
+                                    <div style="margin-top:-3px;">
+                                        <button style="width:100px;height:35px;border:0px;text-align:center;font-weight:bold;letter-spacing:2px;background-color:#F95100;color:white;">提交材料</button>
+                                    </div>
+                                </div>
+                                <div class="fr total">合计:￥ <span id="priceTotal">0.00</span></div>
+                                <div class="fr selected" id="selected">已选商品:<span id="selectedTotal">0</span>件<span class="arrow up">︽</span><span class="arrow down">︾</span></div>
+                                <div class="selected-view">
+                                    &nbsp;已选择商品：
+                                    <div id="selectedViewList" class="clearfix">
+                                        <div><img src="images/1.jpg"><span>取消选择</span></div>
+                                    </div>
+                                    <span class="arrow">◆<span>◆</span></span>
+                                </div>
+                            </div>
+                            <!--点击弹出新增/收货地址界面start-->
+                            <div class="xm-edit-addr-box" id="J_editAddrBox">
+                                <div class="bd">
+                                    <div class="item">
+                                        <label>收货人姓名<span>*</span></label>
+                                        <input type="text" name="userAddress[consignee]" id="Consignee" class="input" placeholder="收货人姓名" maxlength="15" autocomplete='off'>
+                                        <p class="tip-msg tipMsg"></p>
+                                    </div>
+                                    <div class="item">
+                                        <label>联系电话<span>*</span></label>
+                                        <input type="text" name="userAddress[tel]" class="input" id="Telephone" placeholder="11位手机号" autocomplete='off'>
+                                        <p class="tel-modify-tip" id="telModifyTip"></p>
+                                        <p class="tip-msg tipMsg"></p>
+                                    </div>
+                                    <div class="item">
+                                        <label>地址<span>*</span></label>
+                                        <select name="userAddress[province]" id="Provinces" class="select-1">
+                                            <option>省份/自治区</option>
+                                        </select>
+                                        <select name="userAddress[city]" id="Citys" class="select-2" disabled>
+                                            <option>城市/地区/自治州</option>
+                                        </select>
+                                        <select name="userAddress[county]" id="Countys" class="select-3" disabled>
+                                            <option>区/县</option>
+                                        </select>
+                                        <textarea name="userAddress[street]" class="input-area" id="Street" placeholder="路名或街道地址，门牌号"></textarea>
+                                        <p class="tip-msg tipMsg"></p>
+                                    </div>
+                                    <div class="item">
+                                        <label>邮政编码<span>*</span></label>
+                                        <input type="text" name="userAddress[zipcode]" id="Zipcode" class="input" placeholder="邮政编码" autocomplete='off'>
+                                        <p class="zipcode-tip" id="zipcodeTip"></p>
+                                        <p class="tip-msg tipMsg"></p>
+                                    </div>
+                                    <div class="item">
+                                        <label>地址标签<span>*</span></label>
+                                        <input type="text" name="userAddress[tag]" id="Tag" class="input" placeholder='地址标签：如"家"、"公司"。限5个字内'>
+                                        <p class="tip-msg tipMsg"></p>
+                                    </div>
+                                </div>
+                                <div class="ft clearfix">
+                                    <button type="button" class="btn btn-lineDake btn-small " id="J_editAddrCancel">取消</button>
+                                    <button type="button" class="btn btn-primary  btn-small " id="J_editAddrOk">保存</button>
+                                </div>
+                            </div>
+                            <!--
 	<div id="maylove">
 			<div class="selected-view">
         	&nbsp;你可能喜欢的商品：
@@ -377,92 +208,71 @@
 		</div>
 	</div>
 	-->
-  </div>
-  <div id="lateserver1">
-		<div class="mycar1">后续服务
-		</div>
-		<div class="main">
-			<div class="serv1">
-				<center>
-					<img src="images/服务-03.jpg" width="90" height="90"/>
-					<p style="font-weight:bold;line-height:25px">银行开户</p>
-					<p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
-					<p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
-					<button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
-				</center>
-			</div>
-			<div class="serv">
-				<center>
-					<img src="images/服务-01.jpg" width="90" height="90"/>
-					<p style="font-weight:bold;line-height:25px">银行开户</p>
-					<p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
-					<p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
-					<button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
-				</center>
-			</div>
-			<div class="serv">
-				<center>
-					<img src="images/服务-02.jpg" width="90" height="90"/>
-					<p style="font-weight:bold;line-height:25px">银行开户</p>
-					<p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
-					<p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
-					<button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
-				</center>
-			</div>
-			<div class="serv">
-				<center>
-					<img src="images/服务-03.jpg" width="90" height="90"/>
-					<p style="font-weight:bold;line-height:25px">银行开户</p>
-					<p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
-					<p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
-					<button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
-				</center>
-			</div>
-			<div class="serv">
-				<center>
-					<img src="images/服务-02.jpg" width="90" height="90"/>
-					<p style="font-weight:bold;line-height:25px">银行开户</p>
-					<p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
-					<p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
-					<button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
-				</center>
-			</div>
-		</div>
-	</div>
-	<br/>
-    &nbsp;
-   <div id="lateserver">
-		<div class="mycar1">注册流程</div>
-		<div class="main"><img src="images/proce.png" width="100%" height="250"></div>
-	</div>
-	 <script src="js/base.min.js"></script>
-
-        <script type="text/javascript" src="js/address_all.js"></script>
-<script type="text/javascript" src="js/checkout.min.js"></script> 
-</div>			
-</div>
-</center>
-<br/>
-<div id="he">
-	<center>
-        <div id="fri">
-            <table>
-                <tr><td colspan="2" style="font-size:20px; color:black;font-weight:bold;">合作伙伴</td></tr>
-                <tr><td><a href="">新浪</a></td><td><a href="">淘宝</a></td></tr>
-            </table>
-        </div>
-    </center>
-</div>
-<div id="foott">
-	<center>
-        <div id="footer">
-            <table>
-                <tr><td><a href="index.html">网站首页&nbsp;</a>|<a href="about.html">&nbsp;关于我们</a></td></tr>
-                <tr><td>&copy;Copyright 2015-2015. All rights reserved. 助策侠   沪ICP备15039897号-1 </td></tr>
-            </table>
-        </div>
-    </center>
-</div>
+                        </div>
+                        <div id="lateserver1">
+                            <div class="mycar1">后续服务
+                            </div>
+                            <div class="main">
+                                <div class="serv1">
+                                    <center>
+                                        <img src="images/服务-03.jpg" width="90" height="90" />
+                                        <p style="font-weight:bold;line-height:25px">银行开户</p>
+                                        <p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
+                                        <p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
+                                        <button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
+                                    </center>
+                                </div>
+                                <div class="serv">
+                                    <center>
+                                        <img src="images/服务-01.jpg" width="90" height="90" />
+                                        <p style="font-weight:bold;line-height:25px">银行开户</p>
+                                        <p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
+                                        <p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
+                                        <button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
+                                    </center>
+                                </div>
+                                <div class="serv">
+                                    <center>
+                                        <img src="images/服务-02.jpg" width="90" height="90" />
+                                        <p style="font-weight:bold;line-height:25px">银行开户</p>
+                                        <p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
+                                        <p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
+                                        <button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
+                                    </center>
+                                </div>
+                                <div class="serv">
+                                    <center>
+                                        <img src="images/服务-03.jpg" width="90" height="90" />
+                                        <p style="font-weight:bold;line-height:25px">银行开户</p>
+                                        <p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
+                                        <p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
+                                        <button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
+                                    </center>
+                                </div>
+                                <div class="serv">
+                                    <center>
+                                        <img src="images/服务-02.jpg" width="90" height="90" />
+                                        <p style="font-weight:bold;line-height:25px">银行开户</p>
+                                        <p style="font-size:13px;color:#999999;line-height:20px">在线免费预约客户</p>
+                                        <p style="font-size:20px;color:#F95100;font-weight:bold">￥0元</p>
+                                        <button style="background-color:#F95100;color:white;text-align:center;width:80px;height:30px;line-height:30px;font-weight:bold;">立即申购</button>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        <br/> &nbsp;
+                        <div id="lateserver">
+                            <div class="mycar1">注册流程</div>
+                            <div class="main"><img src="images/proce.png" width="100%" height="250"></div>
+                        </div>
+                        <script src="js/base.min.js"></script>
+                        <script type="text/javascript" src="js/address_all.js"></script>
+                        <script type="text/javascript" src="js/checkout.min.js"></script>
+                    </div>
+                </div>
+        </center>
+        <br/>
+        <!--<?=$this->component('footer')?>-->
 </body>
 
 </html>

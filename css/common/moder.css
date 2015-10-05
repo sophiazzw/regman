@@ -22,3 +22,7 @@ a{color:#FFFFFF;}
 #fri a{color:#666;font-size:12px;font-weight:400;}
 #footer{width:1000px;height:80px;text-align:left;padding-top:20px;font-size:15px;}
 #footer td{font-size:15px;font-weight:300;color:white;height:40px;}
+#footer p{
+	line-height: 30px;
+	color: #fff;
+}

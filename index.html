@@ -14,38 +14,6 @@
   	</script>
   	<script type="text/javascript">
   		$(function(){
-			
-			$("#nav ul li").hover(
-				function () {
-					 $(this).css({"background-color":"#0099FF","font-size":"18px"});
-					
-				 },
-				function () {
-				 $(this).css({"background-color":"#1d2087","font-size":"16px"});
-				 }
-			 );
-			 $(".theme-login[name='log']").click(function(){
-				$('.theme-popover-mask').fadeIn(100);
-				$('.theme-popover').slideDown(200);
-			});
-			$('.theme-poptit .close').click(function(){
-				$('.theme-popover-mask').fadeOut(100);
-				$('.theme-popover').slideUp(200);
-			});
-			
-			
-			 $(".theme-login[name='reg']").click(function(){
-				$('.theme-popover-maskaa').fadeIn(100);
-				$('.theme-popoveraa').slideDown(200);
-				
-			});
-			$('.theme-poptitaa .close').click(function(){
-				$('.theme-popover-maskaa').fadeOut(100);
-				$('.theme-popoveraa').slideUp(200);
-			});
-			
-			
-			
 			<!--轮播图片start-->
 			$(".btnlun").show();
 			$(".btnlun  a:first").addClass("active");	
@@ -80,123 +48,8 @@
 					$(this).css("font-size","18px")
 				}
 			});
-			
-			<!--注册验证-->
-			 	var ok1=false;
-                var ok2=false;
-                var ok3=false;
-                var ok4=false;
-				var ok5=false;
-                // 验证用户名
-                $('input[name="username"]').focus(function(){
-                    $(this).next().text(' 用户名应该为3-20位之间').css({"color":"#0099FF","font-weight":"bold"});
-                }).blur(function(){
-                    if($(this).val().length >= 3 && $(this).val().length <=12 && $(this).val()!=''){
-                        $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});
-                        ok1=true;
-                    }else{
-                        $(this).next().text(' 用户名应该为3-20位之间').css({"color":"#0099FF","font-weight":"bold"});;
-                    }
-                     
-                });
- 
-                //验证密码
-                $('input[name="pwd"]').focus(function(){
-                    $(this).next().text(' 密码应该为6-20位之间').css({"color":"#0099FF","font-weight":"bold"});;
-                }).blur(function(){
-                    if($(this).val().length >= 6 && $(this).val().length <=20 && $(this).val()!=''){
-                        $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});;
-                        ok2=true;
-                    }else{
-                        $(this).next().text(' 密码应该为6-20位之间').css({"color":"#0099FF","font-weight":"bold"});;
-                    }
-                     
-                });
- 
-                //验证确认密码
-                    $('input[name="conpwd"]').focus(function(){
-                    $(this).next().text(' 输入密码要一致').css({"color":"#0099FF","font-weight":"bold"});
-                }).blur(function(){
-                    if($(this).val().length >= 6 && $(this).val().length <=20 && $(this).val()!='' && $(this).val() == $('input[name="pwd"]').val()){
-                        $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});
-                        ok3=true;
-                    }else{
-                        $(this).next().text(' 输入密码要一致').css({"color":"#0099FF","font-weight":"bold"});
-                    }
-                     
-                });
- 				
-				
-				
-				//验证手机号
-            $('input[name="phone"]').focus(function(){
-                    $(this).next().text(' 手机号为11位数字').css({"color":"#0099FF","font-weight":"bold"});
-                }).blur(function(){
-					
-                    if($(this).val().length == 11 && !isNaN($(this).val())){
-						 $(this).next().text(' 输入成功').css({"color":"#FB5200","font-weight":"bold"});;
-                        ok5=true;
-                    }else{
-                        $(this).next().text(' 手机号为11位数字').css({"color":"#0099FF","font-weight":"bold"});;
-                    }
-                     
-                });
-                //验证邮箱
-				
-                $('input[name="email"]').focus(function(){
-					var a=$(this).val();
-                    $(this).next().text(' 请输入正确的EMAIL格式').css({"color":"#0099FF","font-weight":"bold"});		
-                	}).blur(function(){
-						var a=$(this).val();
-						  var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-                    	if(!reg.test(a)){
-							
-                        	$(this).next().text(' 请输入正确的EMAIL格式').css({"color":"#0099FF","font-weight":"bold"});
-                   		 }else{      
-							    
-                        	$(this).next().text(' 输入成功').css({"color":"#1d2087","font-weight":"bold"});
-                        	ok4=true;
-                    	}  
-                });
-				//获取短信验证码
-				var validCode=true;
-				$(".msgs").click (function  () {
-					var time=30;
-					var code=$(this);
-					if (validCode) {
-						validCode=false;
-						code.addClass("msgs1");
-					var t=setInterval(function  () {
-						time--;
-						code.html(time+"秒");
-						if (time==0) {
-							clearInterval(t);
-						code.html("重新获取");
-							validCode=true;
-						code.removeClass("msgs1");
-			
-						}
-					},1000)
-					}
-				})
-				
-				
-                //提交按钮,所有验证通过方可提交
- 
-                $('input[name="reg"]').click(function(){
-                    if(ok1 && ok2 && ok3 && ok4){
-                        $(this).submit();
-                    }else{
-					alert("错误");
-                        return false;
-                    }
-                });	
-			<!--注册验end证-->	
-				
-				
-						
-		})	
-  </script>
+		});	
+  	</script>
   
 </head>
 
@@ -222,125 +75,13 @@
 					<li class="pub"><a class="btn-primary theme-login" href="javascript:;" name="reg">注册</a></li>
 				 </ul>
 			</div>
-			<!--登录窗体-->
-			<div class="theme-popover">
-				 <div class="theme-poptit">助策侠祝贺您重出江湖！
-					<a href="javascript:;" title="关闭" class="close">×</a>
-					<br/>
-				</div>
-				<div class="theme-popbod dform">
-					 <form class="theme-signin" name="loginform" action="" method="post">
-						<ol>
-						 <li><strong>用户名|手机号：</strong><input class="ipt" type="text" name="log" value="lanrenzhijia" size="20" /></li>
-						<li class="nn"><strong>	&nbsp;密   码：</strong><input class="ipt" type="password" name="logpwd" value="***" size="20" /></li>
-						<li><input class="btn btn-primary" type="submit" name="submit" value=" 登 录 " />&nbsp;<a href="">忘记密码？</a>&nbsp;<a href="">注册</a></li>
-						</ol>
-					</form>
-				</div>
-			 
-			</div>
-			 <div class="theme-popover-mask"></div>
-			<!--登录窗结束体-->
-			
-			<!--注册窗体-->
-				<div class="theme-popoveraa" id="reg">
-					 <div class="theme-poptitaa">
-					 助策侠期待你的江湖！
-						  <a href="javascript:;" title="关闭" class="close">×</a>
-						<br/>
-					 </div>
-					 <div class="theme-popbod dform">
-						   <form class="theme-signin" name="regform" action="" method="post">
-								<ol>
-									 <li><strong>用户名：</strong><input class="ipt" type="text" name="username" value="注册侠" size="20" /><span></span></li>
-									 <li><strong>密  码：</strong><input class="ipt" type="password" name="pwd" value="***" size="20" /><span></span></li>
-									 <li><strong>确认密码：</strong><input class="ipt" type="password" name="conpwd" value="***" size="20" /><span></span></li>
-									 <li><strong>手机号：</strong><input class="ipt" type="text" name="phone" value="您的手机号" size="20" /><span></span></li>
-									 <li><strong>验证码：</strong><input class="ipt" type="text" name="msg" size="20" /><span class="msgs">获取短信验证码</span></li>
-									  <li><strong>邮箱：</strong><input class="ipt" type="text" name="email" value="您的联系邮箱" size="20" /><span></span></li>
-									 <li><input class="btn btn-primary" type="submit" name="reg" value=" 注 册 " />
-									 </li>
-								</ol>
-						   </form>
-					 </div>
-			 
-				</div>
-			  <div class="theme-popover-maskaa"></div>
-			  
-			<!--注册窗结束体-->
-	
-	
+			<!--<?=$this->component('loginRe')?>-->
 		</div>
 		<center>
  </div>
  <center>
 <div id="body">
-	<!--客服挂件开始-->
-    <div id="for_kefu_block">
-        <div class="kefu_box kefu_block">
-            <div class="kefu_title"><a class="kefu_close" href="javascript:void(0)"><img src="images/kf_top.png" width="183" height="31"></a></div>
-            <div class="kefu_con">
-                <div class="kefu_tel"></div>
-                <div class="kefu1">
-                    <div class="kefu_con_title">
-                        <ul class="jszcfwul clearfix">
-                            <li class="kefu_con_title_li1"><img src="images/kf_line2.png" width="14" height="14"></li>
-                            <li class="kefu_con_title_li2">注册服务</li>
-                        </ul>
-                    </div>
-                    <div class="kefu_con_con1">
-                        <ul class="clearfix">
-                            <li class="neititle"><div class="uline">开店顾问</div></li>
-                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:965258148:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
-                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:12345678:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
-                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:12345678:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
-                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:12345678:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
-                            <li class="neititle"><div class="uline">企业定制</div></li>
-                            <li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=965258148&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:12345678:51" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="kefu5">
-                    <div class="kefu_con_title">
-                        <ul class="clearfix">
-                            <li class="kefu_con_title_li1"><img src="images/kf_line2.png" width="14" height="14"></li>
-                            <li class="kefu_con_title_li2">技术支持</li>
-                        </ul>
-                    </div>
-                    <div class="kefu_con_con">
-                        <ul class="clearfix">
-                            <li><a href="tencent://message/?uin=821821069&amp;Site=咨询&amp;Menu=yes" target="blank" title="售后1" rel="nofollow"><img src="images/QQ1.png" width="34" height="34"><span>售后1</span></a></li>
-                            <li><a href="tencent://message/?uin=821852069&amp;Site=咨询&amp;Menu=yes" target="blank" title="售后2" rel="nofollow"><img src="images/QQ1.png" width="34" height="34"><span>售后2</span></a></li>
-                            <li><a href="tencent://message/?uin=821821069&amp;Site=咨询&amp;Menu=yes" target="blank" title="售后3" rel="nofollow"><img src="images/QQ1.png" width="34" height="34"><span>售后3</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="kefu_tt"><a href="#"><img src="images/kf_foot.png" /></a></div>
-        </div>
-        
-        <div class="kefu_flag"><img src="images/kefu_flag.gif" /></div>
-        
-    </div>
-    
-    <script language="javascript">
-    $(document).ready(function(){
-        $(".kefu_close").click(function(){
-            $(".kefu_block").hide();
-            $(".kefu_flag").show();
-            
-        })
-        $(".kefu_flag").click(function(){
-            $(this).hide();
-            $(".kefu_block").show();
-            
-        })
-    });
-    </script>
-<!--客服挂件结束-->
-
-
-
+	<!--<?=$this->component('service')?>-->
 	<div id="bodyer">
 		<div id="lunbo">
 			<div id="wrapper">
@@ -506,28 +247,7 @@
 	</div>			
 </div>
 </center>
-<div id="he">
-	<center>
-        <div id="fri">
-            
-            <table>
-                <tr><td colspan="2" style="font-size:20px; color:black;font-weight:bold;">合作伙伴</td></tr>
-                <tr><td><a href="">新浪</a></td><td><a href="">淘宝</a></td></tr>
-            </table>
-        </div>
-    </center>
-</div>
-<div id="foot">
-	<center>
-        <div id="footer">
-            
-            <table>
-                <tr><td><a href="">网站首页&nbsp;</a>|<a href="">&nbsp;关于我们</a></td></tr>
-                <tr><td>&copy;Copyright 2015-2015. All rights reserved. 上海水墨盛世网络技术有限公司   沪ICP备15039897号-1 </td></tr>
-            </table>
-        </div>
-    </center>
-</div>
+	<!--<?=$this->component('footer')?>-->
 </body>
 
 </html>
