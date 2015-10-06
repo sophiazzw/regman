@@ -130,7 +130,7 @@ ul,li{list-style-type: none;}
 #top .container{height:52px; position:relative;}
 #top .logo { position:absolute;top:15px;left:0px;z-index: 99;}
 #top .top-tool { position:absolute;top:0;right:0;height: 52px;line-height: 52px; color:#fff;font-size:16px;}
-#top .top-tool img { vertical-align:middle; margin-right:5px;}
+#top .top-tool img { vertical-align:sub; margin-right:5px;}
 #top .top-tool a { color:#fff;font-size:16px;}
 #top .top_right { position:absolute;top:30px;right:10px;}
 
